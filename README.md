@@ -12,7 +12,7 @@ The application includes:
 ### Running the app
 
 
-Binary files have been inclued for modern platforms, to start the app, simply go to the directory and run the approppiate version, for example:<br />
+Binary files have been included for modern platforms, to start the app, simply go to the directory and run the approppiate version, for example:<br />
 - cd accounting_notebook
 - ./server.go-linux-amd64
 
@@ -24,10 +24,10 @@ The list of versions included:
 - MacOS - "server.go-darwin-amd64"
 - Linux - "server.go-linux-386"
 - Linux - "server.go-linux-amd64"
-- Windows - "server.go-windows-386"
-- Windows - "server.go-windows-amd64"
+- Windows - "server.go-windows-386.exe"
+- Windows - "server.go-windows-amd64.exe"
 
-** You can also build this app by yourself if those deliverables didn't work for you, you are going to need installed in your computer Go and yarn, you can follow these operations to do so:
+** You can also build this app by yourself if these deliverables didn't work, you are going to need installed in your computer Go and yarn, you can follow these operations to do so:
 
 - cd accounting_notebook
 - yarn install
@@ -46,7 +46,7 @@ Builds the Go module into a binary executable
 
 ## API Endpoints
 
-Included in this repository, you can find an example Postman collection: **Accounting Notebook.postman_collection.json**, simply import it to start using<br />
+Included in this repository, you can find an example Postman collection: **Accounting Notebook.postman_collection.json**, simply import it to start using it<br />
 
 - **GET /**: displays transactions list
 - **GET /api/transactions**: Obtains the list of transactions
