@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"strconv"
+	"sync"
 	"time"
 
 	"github.com/go-playground/validator"
@@ -25,12 +26,14 @@ type (
 	customValidator struct {
 		validator *validator.Validate
 	}
+
+	allTransactions []transaction
 )
-type allTransactions []transaction
 
 var (
 	transactions = map[int]*transaction{}
 	seq          = 1
+	mux          = &sync.RWMutex{}
 )
 
 //----------
@@ -42,7 +45,6 @@ func (cv *customValidator) Validate(i interface{}) error {
 }
 
 func transactionStructLevelValidation(sl validator.StructLevel) {
-
 	record := sl.Current().Interface().(transaction)
 	balance := getCurrentBalance()
 
@@ -53,6 +55,7 @@ func transactionStructLevelValidation(sl validator.StructLevel) {
 
 func getCurrentBalance() float64 {
 	var balance float64 = 0
+
 	for _, record := range transactions {
 		if record.Type == "debit" {
 			balance -= record.Amount
@@ -73,6 +76,9 @@ func homePage(c echo.Context) error {
 }
 
 func getTransactions(c echo.Context) error {
+	mux.RLock()
+	defer mux.RUnlock()
+
 	transactionsArray := make(allTransactions, len(transactions))
 	totalTransactions := len(transactions)
 
@@ -84,6 +90,9 @@ func getTransactions(c echo.Context) error {
 }
 
 func createTransaction(c echo.Context) error {
+	mux.Lock()
+	defer mux.Unlock()
+
 	record := &transaction{
 		ID:            seq,
 		EffectiveDate: time.Now(),
@@ -99,11 +108,16 @@ func createTransaction(c echo.Context) error {
 
 	transactions[record.ID] = record
 	seq++
+
 	return c.JSON(http.StatusCreated, record)
 }
 
 func getTransaction(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
+
+	mux.RLock()
+	defer mux.RUnlock()
+
 	record := transactions[id]
 
 	if record == nil {
@@ -113,7 +127,12 @@ func getTransaction(c echo.Context) error {
 }
 
 func getBalance(c echo.Context) error {
-	return c.JSON(http.StatusOK, getCurrentBalance())
+	mux.RLock()
+	defer mux.RUnlock()
+
+	balance := getCurrentBalance()
+
+	return c.JSON(http.StatusOK, balance)
 }
 
 func main() {

@@ -32,8 +32,7 @@ The list of versions included:
 - cd accounting_notebook
 - yarn install
 - yarn build
-- go build server.go
-- ./server
+- go run server.go
 
 ### `yarn build`
 
