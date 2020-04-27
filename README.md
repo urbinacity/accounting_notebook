@@ -48,7 +48,7 @@ Builds the Go module into a binary executable
 
 Included in this repository, you can find an example Postman collection: **Accounting Notebook.postman_collection.json**, simply import it to start using it<br />
 
-- **GET /**: displays transactions list
+- **GET /**: displays the initial home page with the transactions list
 - **GET /api/transactions**: Obtains the list of transactions
 - **GET /api/transactions/:id**: Find transaction by ID
 - **GET /api/default**:  Obtains the current balance of the user
