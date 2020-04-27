@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "829b291d-a318-4caa-9d63-59af8255c6bf",
+		"name": "Accounting Notebook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Transaction operation - debit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "type",
+							"value": "debit",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "21.32",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{server_address}}/api/transactions",
+					"protocol": "http",
+					"host": [
+						"{{server_address}}"
+					],
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction operation - credit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "type",
+							"value": "credit",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "51.55",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{server_address}}/api/transactions",
+					"protocol": "http",
+					"host": [
+						"{{server_address}}"
+					],
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction by ID - 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_address}}/api/transactions/2",
+					"protocol": "http",
+					"host": [
+						"{{server_address}}"
+					],
+					"path": [
+						"api",
+						"transactions",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction by ID - 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_address}}/api/transactions/1",
+					"protocol": "http",
+					"host": [
+						"{{server_address}}"
+					],
+					"path": [
+						"api",
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Current Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_address}}/api/default",
+					"protocol": "http",
+					"host": [
+						"{{server_address}}"
+					],
+					"path": [
+						"api",
+						"default"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_address}}/api/transactions",
+					"protocol": "http",
+					"host": [
+						"{{server_address}}"
+					],
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "53727473-84be-414f-bef7-cd9a35f1662b",
+			"key": "server_address",
+			"value": "0.0.0.0:8080",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
