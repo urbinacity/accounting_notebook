@@ -30,6 +30,7 @@ The list of versions included:
 ** You can also build this app by yourself if those deliverables didn't work for you, you are going to need installed in your computer Go and yarn, you can follow these operations to do so:
 
 - cd accounting_notebook
+- yarn install
 - yarn build
 - go build server.go
 - ./server
